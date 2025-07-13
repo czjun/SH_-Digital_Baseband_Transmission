@@ -1,7 +1,7 @@
 clear all; close all; clc;
 
 %% 参数设置
-L = 10000;                    % 信源长度
+L = 100000;                    % 信源长度
 SNR_range = 0:2:20;          % 信噪比范围
 rolloff_factors = [0.1, 0.3, 0.5, 0.7]; % 滚降系数
 modulation_types = {'BPSK', 'QPSK', '8PSK'}; % 调制方式
@@ -78,7 +78,7 @@ for i = 1:length(rolloff_factors)
 end
 
 % 滚降系数对性能的影响
-figure(3);
+figure(2);
 ber_rolloff = zeros(length(rolloff_factors), length(SNR_range));
 for i = 1:length(rolloff_factors)
     rolloff = rolloff_factors(i);
@@ -114,7 +114,7 @@ hold off;
 %% 3. 信道编码前后性能对比
 fprintf('\n=== 分析信道编码的影响 ===\n');
 
-figure(4);
+figure(3);
 ber_coding = zeros(length(coding_types), length(SNR_range));
 for i = 1:length(coding_types)
     coding_type = coding_types{i};
@@ -148,8 +148,6 @@ semilogy(SNR_range, ber_coding(1,:), 'b-o', 'LineWidth', 2);
 semilogy(SNR_range, ber_coding(2,:), 'r-s', 'LineWidth', 2);
 semilogy(SNR_range, ber_coding(3,:), 'g-^', 'LineWidth', 2);
 end
-
-
 
 
 grid on;
