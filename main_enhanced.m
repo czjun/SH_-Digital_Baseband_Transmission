@@ -1,7 +1,7 @@
 clear all; close all; clc;
 
 %% 参数设置
-L = 1000;                    % 信源长度
+L = 10000;                    % 信源长度
 SNR_range = 0:2:20;          % 信噪比范围
 rolloff_factors = [0.1, 0.3, 0.5, 0.7]; % 滚降系数
 modulation_types = {'BPSK', 'QPSK', '8PSK'}; % 调制方式
@@ -12,7 +12,7 @@ coding_types = {'none', 'repeat', 'convolutional'}; % 编码方式
 fprintf('=== 开始系统仿真 ===\n');
 
 % 生成信源
-x = makingData(1, L); % 生成0/1比特流
+x = randi([0 1], 1, L); % 生成0/1比特流
 
 % 信道编码
 x_encoded = channel_coding(x, 'convolutional', 2);
